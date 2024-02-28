@@ -28,11 +28,10 @@ class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
         if post.exists():
             return self.destroy(request, *args, **kwargs)
         else:
-            raise ValidationError('This isn\'t your post to delete, BRUH!')
+            raise ValidationError('This is not your post')
 
 
 class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
-    # queryset = Vote.objects.all()
     serializer_class = VoteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
